@@ -39,10 +39,9 @@ section.has-light-background, section.has-light-background h1, section.has-light
  * GLOBAL STYLES
  *********************************************/
 body {
-  background-color: #112235;
-  background: #112235;
+  background-color: #3a3a5c;
+  background: #3a3a5c;
   background-size: 100%;
-  background-image: url('../../images/nyc-camp.png');
   background-position: top;
   background-repeat: no-repeat;
 }

@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>AJAX Callback Commands - NYCCAMP 2015</title>
+		<title>AJAX Callback Commands - NERDsummit 2015</title>
 
 		<meta name="description" content="Demystifying Drupal AJAX Callback Commands">
 		<meta name="author" content="Michael Miles">
@@ -15,8 +15,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/nyccamp-color.css" id="theme">
-		<link rel="stylesheet" href="css/nyccamp.css">
+		<link rel="stylesheet" href="css/theme/nerd-color.css" id="theme">
+		<link rel="stylesheet" href="css/nerd.css">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -40,8 +40,8 @@
 		<div class="reveal">
             <div class="footer">
                 <div class="branding--logo">
-                    <span class="logo__image"><img src="lib/image/content/logo.png" alt="Drupal NYC camp 2015 logo" height="55px" /></span>
-                    <p class="logo__site-name">#NYCcamp</p>
+                    <span class="logo__image"><img src="lib/image/content/logo.png" alt="NERD Summit 2015 logo" height="55px" /></span>
+                    <p class="logo__site-name">#NERDsummit</p>
                 </div>
                 <div class="company--logo">
                     <span class="logo__image"><img src="lib/image/content/gi-logo-nyccamp.png" alt="Genuine Interactive" height="40px" width="40px" /></span>
@@ -61,9 +61,9 @@
         <section>
           <section data-transition="convex">
               <h1>Demystifying Drupal <br />AJAX Callback Commands</h1>
-              <h2><a href="http://nyccamp.org/node/287/edit" target="_blank">http://nyccamp.org/node/287</a></h2>
-              <h3>NYC CAMP 2015</h3>
-              <h4>#NYCcamp</h4>
+              <h2><a href="http://nerdsummit.org/node/2068" target="_blank">http://nerdsummit.org/node/2068</a></h2>
+              <h3>NERDsummit 2015</h3>
+              <h4>#NERDsummit</h4>
               <aside class="notes"></aside>
           </section>
             <section data-transition="convex">
@@ -91,7 +91,7 @@
                 <strong>Exp:</strong> Working with Drupal since 2008.<br />
               </p>
               <p>
-                <span class="fragment step-note">Acquia Certified.</span>
+                <span class="fragment step-note">Acquia Grand Master.</span>
                 <span class="fragment step-note">2014 Acquia MVP.</span>
               </p>
               <br />
@@ -617,22 +617,26 @@ class RemoveCommand Implements CommandInterface {
           <section data-transition="convex">
             <h3 class="step-note">Attach library to a render array</h3>
             <pre><code class="php" data-trim data-line-numbers=true>
-// Render a page of my messages
-function mymodule_messages_page() {
+namespace Drupal\mymodule\Controller;
+use Drupal\Core\Controller\ControllerBase;
 
-  // .. build $content
-
-  // Create render array.
-  $page[] = array(
-    '#type' => 'markup',
-    '#markup' => $content,
-  );
-  // Attach JavaScript library.
-  $page['#attached']['library'][] = 'core/drupal.ajax';
-
-  return $page;
+class MyModuleController extends ControllerBase {
+  // ...
+  // Render a page of my messages
+  public function messagesPage() {
+    // ... build $content
+    // Create render array.
+    $page[] = array(
+      '#type' => 'markup',
+      '#markup' => $content,
+    );
+    // Attach JavaScript library.
+    $page['#attached']['library'][] = 'core/drupal.ajax';
+    return $page;
+  }
+  // ...
 }
-            </code><span class="codename">mymodule/mymodule.module </span></pre>
+            </code><span class="codename">mymodule/src/Controller/MyModuleController.php </span></pre>
             <p class="caption">Function for building messages page is now using a render array. to the '#attached', 'library' array of that render array, declaring the drupal.ajax library to be included.
             </p>
           </section>
@@ -641,26 +645,29 @@ function mymodule_messages_page() {
               Callback returns commands using an AJAXResponse() [D8]
             </h3>
             <pre><code data-trim data-line-numbers=true>
-// AJAX Callback to read a message.
-function mymodule_read_message_callback($method, $mid) {
-  $message = mymodule_load_message($mid);
-  // @TODO: Graceful degredation if not from ajax method or if no message.
-  // Create AJAX Response object.
-  $response = new AjaxResponse();
-  // Replace content of current message subject.
-  $response->addCommand(new HtmlCommand('#current-msg h2', $message->subject));
-  // Replace content of current message body.
- $response->addCommand(new HtmlCommand('#current-msg p', $message->content));
- // Remove message from unread list.
- $response->addCommand(new RemoveCommand('#msg-' . $mid));
- // Add message to read list.
- $item = '&lt;li>' . $message->subject . '&lt;/li>';
- $response->addCommand(new AppendCommand('#read-msgs', $item));
-);
- // Return ajax response.
- return $response;
-}
-            </code><span class="codename">mymodule/mymodule.module </span></pre>
+namespace Drupal\mymodule\Controller;
+use Drupal\Core\Controller\ControllerBase;
+
+class MyModuleController extends ControllerBase {
+  // ...
+  // AJAX Callback to read a message.
+  public function readMessageCallback($method, $mid) {
+    $msg = mymodule_load_message($mid);
+    // Create AJAX Response object.
+    $response = new AjaxResponse();
+    // Replace content of current message subject.
+    $response->addCommand(new HtmlCommand('#current-msg h2', $msg->subject));
+    // Replace content of current message body.
+    $response->addCommand(new HtmlCommand('#current-msg p', $msg->content));
+    // Remove message from unread list.
+    $response->addCommand(new RemoveCommand('#msg-' . $mid));
+    // Add message to read list.
+    $item = '<li>' . $msg->subject . '</li>';
+    $response->addCommand(new AppendCommand('#read-msgs', $item));
+    // Return ajax response.
+    return $response;
+  }
+            </code><span class="codename">mymodule/src/Controller/MyModuleController.php </span></pre>
             <p class="caption">Returning an AjaxResponse object instead of a render array like in Drupal 7. AjaxResponse has an 'addCommand' method, which takes the argument of a command object.
             </p>
           </section>
@@ -758,10 +765,6 @@ mymodule.commands:
           <section data-transition="convex">
             <h3 class="step-note">2. Attach library to a render array</h3>
             <pre><code class="php" data-trim data-line-numbers=true>
-/**
- * @file
- * Contains \Drupal\mymodule\Controller\MyModuleController.
- */
 namespace Drupal\mymodule\Controller;
 use Drupal\Core\Controller\ControllerBase;
 
@@ -789,10 +792,6 @@ class MyModuleController extends ControllerBase {
           <section data-transition="convex">
             <h3 class="step-note">3. Add command to AjaxResponse object in callback</h3>
             <pre><code class="php" data-trim data-line-numbers=true>
-/**
- * @file
- * Contains \Drupal\mymodule\Controller\MyModuleController.
- */
 namespace Drupal\mymodule\Controller;
 use Drupal\Core\Controller\ControllerBase;
 
@@ -800,11 +799,11 @@ class MyModuleController extends ControllerBase {
   // ...
   // AJAX Callback to read a message.
   public function readMessageCallback($method, $mid) {
-    $message = mymodule_load_message($mid);
+    $msg = mymodule_load_message($mid);
     // Create AJAX Response object.
     $response = new AjaxResponse();
     // Call the readMessage javascript function.
-    $response->addCommand( new ReadMessageCommand($message));
+    $response->addCommand( new ReadMessageCommand($msg));
    );
    // Return ajax response.
    return $response;
@@ -867,14 +866,14 @@ class MyModuleController extends ControllerBase {
             <p>Examples Module: <a href="http://bit.ly/DrupalExMod" target="_blank">bit.ly/DrupalExMod</a></p>
             <p>Drupal 7 Commands: <a href="http://bit.ly/D7ajaxCMD" target="_blank">bit.ly/D7ajaxCMD</a></p>
             <p>Drupal 8 Commands: <a href="http://bit.ly/D8ajaxCMD" target="_blank">bit.ly/D8ajaxCMD</a></p>
-            <p>This Presentation: <a href="http://bit.ly/NYCcampAJAX" target="_blank">bit.ly/NYCcampAJAX</a></p>
-            <p>Presentation Slides: <a href="http://bit.ly/NYCcampAJAXSlides" target="_blank">bit.ly/NYCcampAJAXSlides</a></p>
-            <p>Example Code: <a href="http://bit.ly/NYCcampAJAXEx" target="_blank">bit.ly/NYCcampAJAXEx</a></p>
+            <p>This Presentation: <a href="http://bit.ly/NYCcampAJAX" target="_blank">bit.ly/NERD15ajax</a></p>
+            <p>Presentation Slides: <a href="http://bit.ly/NYCcampAJAXSlides" target="_blank">bit.ly/NERD15ajaxSlides</a></p>
+            <p>Example Code: <a href="http://bit.ly/NYCcampAJAXEx" target="_blank">bit.ly/NERD15ajaxEx</a></p>
           </section>
           <section>
             <h1>Send me feedback!</h1>
             <h3>@mikemiles86</h3>
-            <h3>#NYCcamp</h3>
+            <h3>#NERDsummit</h3>
           </section>
           <section>
            <h1>Thank You!</h1>
