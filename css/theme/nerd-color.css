@@ -42,6 +42,7 @@ body {
   background-color: #3a3a5c;
   background: #3a3a5c;
   background-size: 100%;
+  background-image: url('../../images/nerd_background.png');
   background-position: top;
   background-repeat: no-repeat;
 }
