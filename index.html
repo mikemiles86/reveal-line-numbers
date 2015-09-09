@@ -861,14 +861,11 @@ class MyModuleController extends ControllerBase {
         <section>
           <section>
             <h1>Resources</h1>
-
             <p>Drupal AJAX Framework: <a href="http://bit.ly/DrupalAJAX" target="_blank">bit.ly/DrupalAJAX</a></p>
-            <p>Examples Module: <a href="http://bit.ly/DrupalExMod" target="_blank">bit.ly/DrupalExMod</a></p>
-            <p>Drupal 7 Commands: <a href="http://bit.ly/D7ajaxCMD" target="_blank">bit.ly/D7ajaxCMD</a></p>
-            <p>Drupal 8 Commands: <a href="http://bit.ly/D8ajaxCMD" target="_blank">bit.ly/D8ajaxCMD</a></p>
-            <p>This Presentation: <a href="http://bit.ly/NYCcampAJAX" target="_blank">bit.ly/NERD15ajax</a></p>
-            <p>Presentation Slides: <a href="http://bit.ly/NYCcampAJAXSlides" target="_blank">bit.ly/NERD15ajaxSlides</a></p>
-            <p>Example Code: <a href="http://bit.ly/NYCcampAJAXEx" target="_blank">bit.ly/NERD15ajaxEx</a></p>
+            <p>This Presentation: <a href="http://bit.ly/NERD15ajax" target="_blank">bit.ly/NERD15ajax</a></p>
+            <p>Presentation Slides: <a href="http://bit.ly/NERD15ajaxSlides" target="_blank">bit.ly/NERD15ajaxSlides</a></p>
+            <p>Example Code for Drupal 7: <a href="http://bit.ly/NERD15ajaxEx" target="_blank">bit.ly/NERD15ajaxEx</a></p>
+            <p>Creating Commands in D8: <a href="http://bit.ly/D8AjaxCmds" target="_blank">bit.ly/D8AjaxCmds</a></p>
           </section>
           <section>
             <h1>Send me feedback!</h1>
@@ -938,7 +935,7 @@ class MyModuleController extends ControllerBase {
       function createAsides(event) {
         $('.caption').each(function (i, e) {
           var text = $(this).text();
-          //$(this).replaceWith("<aside class='notes'>" + text + "</aside>");
+          $(this).replaceWith("<aside class='notes'>" + text + "</aside>");
         });
       }
 		</script>
