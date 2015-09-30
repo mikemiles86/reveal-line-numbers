@@ -2,6 +2,8 @@
 
 A 'library' for adding line numbers to code stylized using Highlight.js in a Reveal.js presentation.
 
+See a [live example](https://mikemiles86.github.io/reveal-line-numbers/#/)
+
 # Dependencies
 
 This library depends on using Highlight.js in your Reveal.js presentation.
