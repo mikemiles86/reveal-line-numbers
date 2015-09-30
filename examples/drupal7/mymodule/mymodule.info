@@ -1,3 +1,0 @@
-name = MyModule
-description = "Example module for demostrating how to use Drupal AJAX Callback Commands."
-core = 7.x
