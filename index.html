@@ -50,7 +50,7 @@
           <section>
             <h2>About</h2>
             <p>
-              This presentation demostraights using a custom javascript library to add line numbers to example code in a Reveal.js presentation.
+              This presentation demostrates using a custom javascript library to add line numbers to example code in a Reveal.js presentation.
             </p>
             <p>
               The code for this library is available <a href="https://github.com/mikemiles86/reveal-line-numbers" target="_blank">Here</a>
@@ -59,23 +59,6 @@
               The source code for this presentation is available <a href="https://github.com/mikemiles86/reveal-line-numbers/tree/gh-pages" target="_blank">here</a>
             </p>
           </section>
-          <section data-transition="convex">
-            <h2>Example code</h2><h3> with class "line-numbers"</h3>
-            <pre><code class="php line-numbers">
-/**
- * Example Code.
- */
-function my_example_code($line_numbers = TRUE) {
-  $message = 'This example code does';
-  $message .= ($line_numbers ? '' : ' not');
-  $message .= ' have line numbers.';
-
-  return $message;
-}
-
-print my_example_code(TRUE);
-            </code></pre>
-        </section>
           <section data-transition="convex">
             <h2>Example code</h2><h3>with no line numbers</h3>
             <pre><code class="php">
@@ -91,6 +74,23 @@ function my_example_code($line_numbers = TRUE) {
 }
 
 print my_example_code(FALSE);
+            </code></pre>
+        </section>
+        <section data-transition="convex">
+            <h2>Example code</h2><h3> with class "line-numbers"</h3>
+            <pre><code class="php line-numbers">
+/**
+ * Example Code.
+ */
+function my_example_code($line_numbers = TRUE) {
+  $message = 'This example code does';
+  $message .= ($line_numbers ? '' : ' not');
+  $message .= ' have line numbers.';
+
+  return $message;
+}
+
+print my_example_code(TRUE);
             </code></pre>
         </section>
 			</div>
