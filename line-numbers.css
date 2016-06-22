@@ -1,16 +1,16 @@
-/**
- * Place this file in your Reveal.js presentation in 'lib/css/'.
- */
-
 code.line-numbers {
-  counter-reset: line;
+  counter-reset: line_numbers;
 }
 
 code span.line-number {
-  counter-increment: line;
+  counter-increment: line_numbers;
 }
 
 code span.line-number:before {
-  content: counter(line);
+  content: counter(line_numbers);
   color: gray;
+}
+
+code span.highlight-line:before {
+  color: yellow;
 }
