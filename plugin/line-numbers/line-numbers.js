@@ -1,5 +1,5 @@
 /**
- * Place this file in your Reveal.js presentation in 'lib/js/'.
+ * Place this file in your Reveal.js presentation in 'plugin/line-numbers'.
  *
  * Add this javascript library to a reaveal.js presentation by adding it as a
  * dependency in Reveal.initialize.
