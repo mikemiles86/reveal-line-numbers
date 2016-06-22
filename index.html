@@ -90,6 +90,22 @@ function my_example_code($line_numbers = TRUE) {
 print my_example_code(TRUE);
             </code></pre>
         </section>
+        <section data-transition="convex">
+          <h2>Example code</h2><h3> with highlighted line numbers</h3>
+          <pre><code class="php line-numbers" data-highlight-lines="4-7,9,10,12">
+/**
+ * Example Code.
+ */
+function my_example_code($line_numbers = TRUE) {
+  $message = 'This example code does';
+  $message .= ' have line numbers';
+  $message .= ' and highlighter lines.';
+
+  return $message;
+}
+
+print my_example_code(TRUE);
+            </code></pre>
 			</div>
 		</div>
 
@@ -117,7 +133,7 @@ print my_example_code(TRUE);
           { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
           { src: 'plugin/zoom-js/zoom.js', async: true },
           { src: 'plugin/notes/notes.js', async: true, callback: function() {createAsides();} },
-          { src: 'lib/js/line-numbers.js'}
+          { src: 'plugin/line-numbers/line-numbers.js'}
 				]
 			});
 
