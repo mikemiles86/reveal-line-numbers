@@ -92,7 +92,7 @@ print my_example_code(TRUE);
         </section>
         <section data-transition="convex">
           <h2>Example code</h2><h3> with highlighted line numbers</h3>
-          <pre><code class="php line-numbers" data-highlight-lines="4-7,9,10,12">
+          <pre><code class="php line-numbers" data-trim data-highlight-lines="4-7,9,10,12">
 /**
  * Example Code.
  */
@@ -129,10 +129,7 @@ print my_example_code(TRUE);
           { src: 'lib/js/jquery-2.1.3.min.js'},
           { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
           { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
           { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
-          { src: 'plugin/zoom-js/zoom.js', async: true },
-          { src: 'plugin/notes/notes.js', async: true, callback: function() {createAsides();} },
           { src: 'plugin/line-numbers/line-numbers.js', async: false}
 				]
 			});
