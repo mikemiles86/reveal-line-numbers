@@ -23,7 +23,7 @@ To use this library in a Reveal.js presentation, you need to add the 'line-numbe
 Reveal.initialize({
   dependencies: [
    // ...
-    {src: 'plugin/line-numbers.js'}
+    {src: 'plugin/line-numbers/line-numbers.js'}
     // ...
   ]
 })
@@ -32,7 +32,7 @@ Reveal.initialize({
 ## Usage
 
 ### Adding line numbers to code blocks
-To add line numbers to a code block, just add the class 'line-numbers' to the <code> element
+To add line numbers to a code block, just add the class 'line-numbers' to the &lt;code> element
 
 ```html
 <pre><code class="line-numbers">
@@ -53,9 +53,11 @@ print my_example_code(TRUE);
 
 ### Highlighting line numbers.
 
-To highlight particular line numbers in a code block, add the attribute 'data-highlight-lines' to the <code> element. Seperate the lines you would like to highlight with a comma(,). Specifcy a group of lines to highlight by seperating the start line and end line with a dash(-).
+To highlight particular line numbers in a code block, add the attribute 'data-highlight-lines' to the &lt;code> element.
+* Seperate the lines you would like to highlight with a comma(,).
+* Specifcy a group of lines to highlight by seperating the start line and end line with a dash(-).
 
-Example: to highlight the lines 1,2,3:
+_Example: to highlight the lines 1,2,3:_
 ```html
 <pre><code class="line-numbers" data-highlight-lines="1,2,3">
 /**
@@ -73,7 +75,7 @@ print my_example_code(TRUE);
 </code></pre>
 ```
 
-Example: To highlight the lines 4 to 10:
+_Example: To highlight the lines 4 to 10:_
 ```html
 <pre><code class="line-numbers" data-highlight-lines="4-10">
 /**
@@ -91,7 +93,7 @@ print my_example_code(TRUE);
 </code></pre>
 ```
 
-Example: highlighting lines 1 to 3 and 5,7,9:
+_Example: highlighting lines 1 to 3 and 5,7,9:_
 
 ```html
 <pre><code class="line-numbers" data-highlight-lines="1-3,5,7,9">
