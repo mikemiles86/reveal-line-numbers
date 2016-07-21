@@ -14,7 +14,7 @@ Reveal.addEventListener( 'ready', function( event ) {
     var link = document.createElement( 'link' );
     link.rel = 'stylesheet';
     link.type = 'text/css';
-    link.href = 'plugins/line-numbers/line-numbers.css';
+    link.href = 'plugin/line-numbers/line-numbers.css';
     // Add CSS to head
     document.getElementsByTagName( 'head' )[0].appendChild( link );
   }
