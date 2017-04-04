@@ -7,7 +7,7 @@ code span.line-number {
 }
 
 code span.line-number:before {
-  content: counter(line_numbers);
+  content: counter(line_numbers, decimal-leading-zero);
   color: gray;
 }
 
