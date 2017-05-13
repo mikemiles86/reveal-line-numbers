@@ -7,8 +7,11 @@ code span.line-number {
 }
 
 code span.line-number:before {
-  content: counter(line_numbers, decimal-leading-zero);
+  content: counter(line_numbers);
   color: gray;
+  text-align: center;
+  float: left;
+  width: 2ch;
 }
 
 code span.highlight-line:before {
