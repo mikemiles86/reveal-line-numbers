@@ -45,8 +45,11 @@ function addLineNumbers() {
       // Get the content of the code block.
       var content = line_numbers[l].innerHTML;
       var classes = '';
-      // Split the code block at new line.
+      // Split the code block at new line, but make sure we don't carry an
+      // empty trailing line.
       content = content.split("\n");
+      if (content.length != 0 && !content[content.length - 1])
+        content.pop();
       // Loop through each line.
       for (var n = 0; n < content.length; n++) {
         // Add class 'line-number'.
