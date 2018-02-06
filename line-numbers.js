@@ -59,7 +59,7 @@ function addLineNumbers() {
           classes += ' highlight-line';
         }
         // Append line with line number span.
-        content[n] = "<span class=\"" + classes + "\"> </span>" + content[n];
+        content[n] = "<span class=\"" + classes + "\"></span>" + content[n];
       }
       // Rejoin all content.
       content = content.join("\n");
