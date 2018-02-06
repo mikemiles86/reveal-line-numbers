@@ -4,6 +4,7 @@ code.line-numbers {
 
 code span.line-number {
   counter-increment: line_numbers;
+  margin-right: 1em;
 }
 
 code span.line-number:before {
