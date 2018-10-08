@@ -23,8 +23,38 @@ Reveal.addEventListener( 'ready', function( event ) {
 // Adding an event listener on slidechanged event to add line numbers to
 // code blocks.
 Reveal.addEventListener('slidechanged', function(event) {
+  addLineNumbersToPreCodeBlocks();
   addLineNumbers();
 });
+
+// Adds the "line-numbers" class and "data-highlight-lines" attribute to
+// <code> blocks enclosed in <pre> blocks.
+// (This is important for auto-generated HTML from Markdown, because
+// larger code-blocks will be enclosed in <pre><code>...</code></pre> blocks
+// by Markdown, but the "line-numbers" class will only be added to the <pre>
+// block.)
+function addLineNumbersToPreCodeBlocks() {
+  // For any <pre> blocks in the current slide with class 'line-numbers'.
+  var line_numbers = document.getElementsByClassName("line-numbers");
+  for (var l = 0; l < line_numbers.length; l++) {
+    if (line_numbers[l].tagName == "PRE") {
+      // Check if a <code> block is the only, single child.
+      if (line_numbers[l].hasChildNodes() && line_numbers[l].childNodes.length == 1 &&
+          line_numbers[l].firstChild.tagName == "CODE") {
+        // Check if <code> has line-number class not already applied.
+        var codeNode = line_numbers[l].firstChild;
+        if (! codeNode.classList.contains("line-numbers")) {
+          // Add 'line-numbers' class and possibly the attribute for lines to highlight.
+          codeNode.classList.add("line-numbers");
+          if (line_numbers[l].hasAttribute("data-highlight-lines")) {
+            attrValue = line_numbers[l].getAttribute("data-highlight-lines");
+            codeNode.setAttribute("data-highlight-lines", attrValue);
+          }
+        }
+      }
+    }
+  }
+}
 
 function addLineNumbers() {
   // For any code blocks in the current slide with class 'line-numbers'.
