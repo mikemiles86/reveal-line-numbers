@@ -72,6 +72,9 @@ function addLineNumbers() {
         highlights = getLineNumberHighlights(line_numbers[l].getAttribute("data-highlight-lines"));
       }
 
+      // Determine the intial value of the line-numbers-counter.
+      var init_offset = getInitialLineNumberCounterValue(line_numbers[l]);
+
       // Get the content of the code block.
       var content = line_numbers[l].innerHTML;
       var classes = '';
@@ -85,7 +88,7 @@ function addLineNumbers() {
         // Add class 'line-number'.
         classes = 'line-number';
         // Should this line be highlighted?
-        if (highlights.indexOf(n+1) > -1) {
+        if (highlights.indexOf(n+1 + init_offset) > -1) {
           classes += ' highlight-line';
         }
         // Append line with line number span.
@@ -140,4 +143,21 @@ function getLineNumberHighlights(line_numbers) {
   }
   // Return count of hightlight lines.
   return highlights;
+}
+
+// Determines the initial value of the line-numbers CSS-counter.
+function getInitialLineNumberCounterValue(block) {
+  var init_line_number = 0;
+
+  // Retrieve initial value from style.
+  var string_from_css = getComputedStyle(block, null).getPropertyValue('--line-numbers-init');
+  // Verify initial value.
+  if (typeof string_from_css == 'string') {
+    var initVal = parseInt(string_from_css);
+    if (! isNaN(initVal)) {
+      init_line_number = initVal - 1;
+    }
+  }
+
+  return init_line_number;
 }
