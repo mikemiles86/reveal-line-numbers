@@ -1,5 +1,5 @@
 code.line-numbers {
-  counter-reset: line_numbers;
+  counter-reset: line_numbers calc(var(--line-numbers-init, 1) - 1);
 }
 
 code span.line-number {
