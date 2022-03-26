@@ -51,6 +51,27 @@ print my_example_code(TRUE);
 </code></pre>
 ```
 
+### Starting line-numbers from other number than 1
+To make the line numbers start at a different number than 1, you can add an inline style to the &lt;code> element
+which sets the CSS variable `--line-numbers-init` to its initial value.
+
+```html
+<pre><code class="line-numbers" style="--line-numbers-init: 42">
+/**
+ * Example Code.
+ */
+function my_example_code($line_numbers = TRUE) {
+  $message = 'This example code does';
+  $message .= ($line_numbers ? '' : ' not');
+  $message .= ' have line numbers starting at 42.';
+
+  return $message;
+}
+
+print my_example_code(TRUE);
+</code></pre>
+```
+
 ### Highlighting line numbers.
 
 To highlight particular line numbers in a code block, add the attribute 'data-highlight-lines' to the &lt;code> element.
